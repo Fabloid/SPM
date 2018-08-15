@@ -1,0 +1,54 @@
+﻿<div>
+
+    <h2>Информация о сотруднике</h2>
+
+    <form method="post">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Фамилия</span>
+            </div>
+            <input class="form-control" type="text" value="@ViewBag.Employee._family" name="_family"/>
+            <div class="error-box"></div>
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Имя</span>
+            </div>
+            <input class="form-control" type="text" value="@ViewBag.Employee._name" name="_name"/>
+            <div class="error-box"></div>
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Отчество</span>
+            </div>
+            <input class="form-control" type="text" value="@ViewBag.Employee._patronymic" name="_patronymic"/>
+            <div class="error-box"></div>
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">E-mail</span>
+            </div>
+            <input class="form-control" type="text" value="@ViewBag.Employee._email" name="_email"/>
+            <div class="error-box"></div>
+        </div>
+        <div class="input-group-append">
+            <select class="custom-select" name="_skill">
+                @foreach (var s in ViewBag.Skills)
+                {
+                    if (s == ViewBag.Employee._skill.ToString())
+                    {
+                        <option selected>@s</option>
+                    }
+                    else
+                    {
+                        <option>@s</option>
+                    }
+                }
+            </select>
+            <button name="record" class="btn">Сохранить</button>
+        </div>
+    </form>
+
+</div>
+
+<script type="text/javascript" src="~/Scripts/Validation_employee.js"></script>

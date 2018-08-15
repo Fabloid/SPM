@@ -1,0 +1,135 @@
+﻿<div>
+    <form method="post">
+        <h2>Информация о проекте</h2>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Название проекта</span>
+            </div>
+            <input class="form-control" type="text" value="@ViewBag.Project._name" name="_name" />
+        </div>
+
+
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Руководитель проекта</span>
+            </div>
+            <select class="custom-select" name="_id_lead">
+                @foreach (var t in ViewBag.Top)
+                {
+                    if (t._id == ViewBag.Project._id_lead)
+                    {
+                        <option selected value="@t._id">@t._family</option>
+                    }
+                    else
+                    {
+                        <option value="@t._id">@t._family</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Заказчик проекта</span>
+            </div>
+            <select class="custom-select" name="_id_company_custoner">
+                @foreach (var c in ViewBag.Customers)
+                {
+                    if (c._id == ViewBag.Project._id_company_custoner)
+                    {
+                        <option selected value="@c._id">@c._name</option>
+                    }
+                    else
+                    {
+                        <option value="@c._id">@c._name</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Исполнитель проекта</span>
+            </div>
+            <select class="custom-select" name="_id_company_performer">
+                @foreach (var p in ViewBag.Performer)
+                {
+                    if (p._id == ViewBag.Project._id_company_performer)
+                    {
+                        <option selected value="@p._id">@p._name</option>
+                    }
+                    else
+                    {
+                        <option value="@p._id">@p._name</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Сроки проекта</span>
+            </div>
+            <input type="date" class="form-control" name="_date_begin" readonly value="@ViewBag.Project._date_begin.Year-@ViewBag.Month_begin-@ViewBag.Day_begin">
+            <input type="date" class="form-control" name="_date_end" value="@ViewBag.Project._date_end.Year-@ViewBag.Month_end-@ViewBag.Day_end">
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Приоритет</span>
+            </div>
+            <select class="custom-select" name="_priority">
+                @for (int i = 0; i <= 5; i++)
+                {
+                    if (i == ViewBag.Project._priority)
+                    {
+                        <option selected value="@i">@i</option>
+                    }
+                    else
+                    {
+                        <option value="@i">@i</option>
+                    }
+                }
+            </select>
+        </div>
+        <textarea class="form-control" placeholder="Комментарий" name="_comment">@ViewBag.Project._comment</textarea>
+        <button class="btn float-left" name="rec" value="save">Сохранить</button>
+    </form>
+    <script type="text/javascript" src="~/Scripts/Validation_project.js"></script>
+    <br />
+    <br />
+    <hr />
+
+    <form method="post">
+        <h4>Сотрудники проекта</h4>
+        <div class="input-group">
+            <select class="custom-select" name="employee">
+                @foreach (var p in ViewBag.Employees)
+                {
+                    <option value="@p._id">@p._family</option>
+                }
+            </select>
+            <button class="btn" name="rec" value="add">Добавить</button>
+        </div>
+    </form>
+    <form method="get">
+        <br />
+        <table class="table">
+            <tr>
+                <td><p>Фамилия</p></td>
+                <td><p>Имя</p></td>
+                <td><p>Отчество</p></td>
+                <td><p>E-mail</p></td>
+                <td><p>Skill</p></td>
+            </tr>
+            @foreach (var e in ViewBag.Employee_in_project)
+            {
+                <tr>
+                    <td>@e._family</td>
+                    <td>@e._name</td>
+                    <td>@e._patronymic</td>
+                    <td>@e._email</td>
+                    <td>@e._skill</td>
+                    <td><button class="btn" name="id_employee" value="@e._id">Удалить</button></td>
+                </tr>
+            }
+        </table>
+    </form>
+</div>

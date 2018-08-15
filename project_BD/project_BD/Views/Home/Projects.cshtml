@@ -1,0 +1,106 @@
+﻿<div class="row" style="height:90vh">
+    <div class="col-sm-10 col-md-10 col-lg-10 col-xl-10">
+        <h2>Новый проект</h2>
+
+        <form method="post" action="">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Название проекта" name="_name">
+                <select class="custom-select" name="_id_lead">
+                    <option selected value="0">Руководитель</option>
+                    @foreach (var t in ViewBag.Top)
+                    {
+                        <option value="@t._id">@t._family</option>
+                    }
+                </select>
+                <select class="custom-select" name="_id_company_custoner">
+                    <option selected value="0">Заказчик</option>
+                    @foreach (var c in ViewBag.Customers)
+                    {
+                        <option value="@c._id">@c._name</option>
+                    }
+                </select>
+                <select class="custom-select" name="_id_company_performer">
+                    <option selected value="0">Исполнитель</option>
+                    @foreach (var p in ViewBag.Performer)
+                    {
+                        <option value="@p._id">@p._name</option>
+                    }
+                </select>
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Начало и Deadline</span>
+                </div>
+                <input type="date" class="form-control" name="_date_begin">
+                <input type="date" class="form-control" name="_date_end">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Приоритет</span>
+                </div>
+                <select class="custom-select" name="_priority">
+                    @for (int i = 0; i <= 5; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+                <button class="btn" name="rec">Добавить</button>
+
+            </div>
+            <textarea class="form-control col-12" placeholder="Комментарий" name="_comment"></textarea>
+        </form>
+        <script type="text/javascript" src="~/Scripts/Validation_project.js"></script>
+
+        <hr />
+
+        <h4>Список проектов</h4>
+
+        <form method="get">
+            <table class="table">
+                <tr>
+                    <td><p><a class="text-light" href="/Home/Projects/1">Название проекта</a></p></td>
+                    <td><p><a class="text-light" href="/Home/Projects/2">Дата начала проекта</a></p></td>
+                    <td><p><a class="text-light" href="/Home/Projects/3">Крайний срок проекта</a></p></td>
+                    <td><p><a class="text-light" href="/Home/Projects/4">Приоритет</a></p></td>
+                </tr>
+                @foreach (var pr in ViewBag.Projects)
+                {
+                    <tr>
+                        <td><p><a class="text-light" href="/Home/Project/@pr._id">@pr._name</a></p></td>
+                        <td><p>@pr._date_begin.ToShortDateString()</p></td>
+                        <td><p>@pr._date_end.ToShortDateString()</p></td>
+                        <td><p>@pr._priority</p></td>
+                        <td><button class="btn" name="id_project" value="@pr._id">Удалить</button></td>
+                    </tr>
+                }
+            </table>
+        </form>
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2" style="background-color:#808080">
+        <a class="text-right">Фильтр</a>
+        <hr />
+        <form method="get">
+            <a class="text-center">Дата начала:</a>
+            <input type="date" class="form-control" name="_from">
+            <input type="date" class="form-control" name="_befor">
+            <br />
+            <select class="custom-select" name="_lead">
+                <option selected value="0">Руководитель</option>
+                @foreach (var t in ViewBag.Top)
+                {
+                    <option value="@t._id">@t._family</option>
+                }
+            </select>
+            <a class="text-center">Приоритет:</a>
+            <select class="custom-select" name="_prior">
+                <option selected value="-1">Все</option>
+                @for (int i = 0; i <= 5; i++)
+                {
+                    <option value="@i">@i</option>
+                }
+            </select>
+            <br />
+            <br />
+            <button class="btn" name="filtering" value="1">Отфильтровать</button>
+        </form>
+    </div>
+
+</div>

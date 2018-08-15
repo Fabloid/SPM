@@ -1,0 +1,51 @@
+﻿<div>
+
+    <h2>Новый сотрудник</h2>
+
+    <form method="post" action="">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Фамилия" name="_family">
+            <input type="text" class="form-control" placeholder="Имя" name="_name">
+            <input type="text" class="form-control" placeholder="Отчество" name="_patronymic">
+            <input type="text" class="form-control" placeholder="E-mail" name="_email">
+            <div class="input-group-append">
+                <select class="custom-select" name="_skill">                    
+                    @foreach (var s in ViewBag.Skills)
+                    {
+                        <option>@s</option>
+                    }
+                </select>
+                <button name="record" class="btn">Добавить</button>
+            </div>
+        </div>
+    </form>
+
+    <hr />
+
+    <h4>Список сотрудников</h4>
+
+    <table class="table">
+        <tr>
+            <td><p>Фамилия</p></td>
+            <td><p>Имя</p></td>
+            <td><p>Отчество</p></td>
+            <td><p>E-mail</p></td>
+            <td><p>Skill</p></td>
+        </tr>
+        @foreach (var e in ViewBag.Employees)
+        {
+        <tr>
+            <td><a class="text-light" href="/Home/Employee/@e._id">@e._family</a></td>
+            <td>@e._name</td>
+            <td>@e._patronymic</td>
+            <td>@e._email</td>
+            <td>@e._skill</td>
+            <td><a class="text-muted" href="/Home/Employees/@e._id">Удалить</a></td>
+        </tr>
+        }
+
+    </table>
+
+</div>
+
+<script type="text/javascript" src="~/Scripts/Validation_employee.js"></script>

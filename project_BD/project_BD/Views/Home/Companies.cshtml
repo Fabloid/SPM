@@ -1,0 +1,28 @@
+﻿<div>
+
+    <h2>@ViewBag.Title</h2>
+
+    <form method="post" action="">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Название компании" name="_name">
+            <input type="hidden" value="@ViewBag.Title" name="_type">
+            <button class="btn">Добавить</button>
+        </div>
+    </form>
+
+    <hr />
+    
+    <h4>Список компаний</h4>
+    <table class="table">
+        <tr>
+            <td><p>Название</p></td>            
+        </tr>
+        @foreach (var c in ViewBag.Companies)
+        {
+            <tr>
+                <td>@c._name</td>
+            </tr>
+        }
+    </table>
+
+</div>

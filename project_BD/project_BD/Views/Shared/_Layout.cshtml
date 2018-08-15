@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>С.У.П.</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="container-fluid text-right text-light" style="height:5vh; background-color:#444444">Система управления проектами</div>
+    <div class="container-fluid">
+        <div class="row" style="height:95vh">
+            <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2" style="background-color:#808080">
+                <div class="row d-flex flex-column">
+                    <a class="text-right">Меню</a>
+                    <a class="p-2 badge-dark" style="border-color:black" href="/Home/Index">Главное меню</a>
+                    <a class="p-2 badge-dark" style="border-color:black" href="/Home/Projects">Проекты</a>
+                    <a class="p-2 badge-dark" style="border-color:black" href="/Home/Employees">Сотрудники</a>
+                    <a class="p-2 badge-dark" style="border-color:black" href="/Home/Companies/0">Заказчики</a>
+                    <a class="p-2 badge-dark" style="border-color:black" href="/Home/Companies/1">Исполнители</a>
+                </div>
+
+            </div>
+            <div class="col-sm-10 col-md-10 col-lg-10 col-xl-10" style="background-color:#969696">
+                <div class="container-fluid body-content text-center">
+
+                    @Scripts.Render("~/bundles/jquery")
+                    @Scripts.Render("~/bundles/bootstrap")
+                    @RenderSection("scripts", required: false)
+
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
