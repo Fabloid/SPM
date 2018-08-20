@@ -105,8 +105,9 @@ namespace project_BD.Controllers
         }
         //--------------------------------------------------
         [HttpGet]
-        public ActionResult Companies(Type_company id=0)
+        public ActionResult Companies(Type_company id=0, int id_company=0)
         {
+            _control.Del_company(id_company);
             Companies_get_post(id);
 
             return View();

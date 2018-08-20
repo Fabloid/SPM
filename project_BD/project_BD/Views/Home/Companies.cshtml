@@ -13,16 +13,21 @@
     <hr />
     
     <h4>Список компаний</h4>
-    <table class="table">
-        <tr>
-            <td><p>Название</p></td>            
-        </tr>
-        @foreach (var c in ViewBag.Companies)
-        {
+    <form method="get">
+        <table class="table">
             <tr>
-                <td>@c._name</td>
+                <td><p>ID компании</p></td>
+                <td><p>Название</p></td>
             </tr>
-        }
-    </table>
+            @foreach (var c in ViewBag.Companies)
+            {
+                <tr>
+                    <td>@c._id</td>
+                    <td>@c._name</td>
+                    <td><button class="btn" name="id_company" value="@c._id">Удалить</button></td>
+                </tr>
+            }
+        </table>
+    </form>
 
 </div>

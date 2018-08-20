@@ -74,6 +74,16 @@ namespace project_BD.Models.Classes
             _db._companies.Add(new Company(company._name, company._type));
             _db.SaveChanges();
         }
+        //delete company
+        public void Del_company(int id)
+        {
+            if (id > 0)
+            {
+                Company company = _db._companies.Where(c => c._id == id).ToList()[0];
+                _db._companies.Remove(company);
+                _db.SaveChanges();
+            }
+        }
         //getting a list of companies
         public IEnumerable<Company> Get_list_companies(Type_company type)
         {
